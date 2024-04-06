@@ -33,7 +33,7 @@ function App() {
             method: 'POST',
             body: formData,
             headers: {
-                'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>'
+                'Content-Type': 'multipart/form-data'
             }
           })
           .then(response => response.blob())
