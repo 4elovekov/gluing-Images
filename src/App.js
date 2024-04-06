@@ -46,21 +46,31 @@ function App() {
                 type: "image/jpeg",
             });
             console.log(blobb)
-            const url = Window.URL.createObjectURL(blobb);
-            console.log("{image: url}", {image: url})
-            console.log("url", url)
+            try {
+                const url = URL.createObjectURL(blobb);
+                console.log("{image: url}", {image: url})
+                console.log("url", url)
+            } catch {
 
+            }
             const base64String = response.data;
+            console.log("base64String", base64String)
             const byteCharacters = atob(base64String);
+            console.log("byteCharacters", byteCharacters)
             let byteArray = new Uint8Array(byteCharacters.length);
+            console.log("byteArray", byteArray)
             for (var i = 0; i < byteCharacters.length; i++) {
                 byteArray[i] = byteCharacters.charCodeAt(i);
             }
             const blob = new Blob([byteArray], { type: 'image/png' });
-            var imageUrl = Window.URL.createObjectURL(blob);
-            var img = document.createElement('img');
-            img.src = imageUrl;
-            document.body.appendChild(img)
+            try {
+                const imageUrl = URL.createObjectURL(blob);
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                document.body.appendChild(img)
+            } catch {
+
+            }
 
             // const base64String = btoa(
             //     new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), '')
