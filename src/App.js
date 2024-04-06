@@ -10,6 +10,7 @@ function App() {
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [selectedUrls, setSelectedUrls] = useState([]);
     const [resultImageUrl, setResultImageUrl] = useState();
+    const [isLoading, setIsLoading] = useState(false)
     const app = useRef();
 
     useEffect(() => {
@@ -17,6 +18,7 @@ function App() {
     }, [])
 
     const handleFileDrop = (event) => {
+        setIsLoading(true)
         let files = Array.from(event.dataTransfer.files);
         files = files?.slice(0, 2)
         setSelectedFiles(files)
@@ -25,6 +27,7 @@ function App() {
     };
 
     const handleFileChange = (event) => {
+        setIsLoading(true)
         let files = Array.from(event.target.files);
         files = files?.slice(0, 2)
         setSelectedFiles(files)
@@ -33,6 +36,7 @@ function App() {
     };
 
     const handleUpload = async () => {
+        setIsLoading(true)
         if (selectedFiles.length === 0) {
             console.error('No files selected.');
             return;
@@ -63,7 +67,11 @@ function App() {
                 handleChange={handleFileChange}
             />
             <MyButton onClick={handleUpload} children={"Склеить"}/>
-            <ResultDisplay resultImageUrl={resultImageUrl}/>
+            <ResultDisplay 
+                isLoading={isLoading} 
+                setIsLoading={setIsLoading} 
+                resultImageUrl={resultImageUrl}
+            />
         </div>
     )
 }
