@@ -72,17 +72,19 @@ function App() {
 
             }
 
-            // const base64String = btoa(
-            //     new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), '')
-            // );
-            // Создаем URL для изображения
-            //const imageUrl = URL.createObjectURL(response.data.blob());
-            // const imageUrl = `data:${response.headers['content-type']};base64,${base64String}`
-              
-            // // Создаем элемент изображения и отображаем его на странице
+            const base64String2 = btoa(
+                new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), '')
+            );
+            //Создаем URL для изображения
+            const imageUrl2 = URL.createObjectURL(response.data.blob());
+            const imageUr3 = `data:${response.headers['content-type']};base64,${base64String2}`
+            console.log("imageUrl2", imageUrl2)
+            console.log("imageUr3", imageUr3)
+            // Создаем элемент изображения и отображаем его на странице
             // const imageElement = document.createElement('img');
             // imageElement.src = imageUrl;
             // document.body.appendChild(imageElement);
+
             console.log(response)
             console.log(response.data?.blob())
             console.log(response.request)
