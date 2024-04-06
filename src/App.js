@@ -38,7 +38,7 @@ function App() {
             const response = await axios.post('http://localhost:8080/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
-                }, responseType: "arraybuffer"
+                }, responseType: "image/jpeg"
             });
             console.log(response)
             console.log(response.data)
