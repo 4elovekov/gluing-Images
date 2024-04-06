@@ -8,12 +8,11 @@ import ResultDisplay from './components/UI/ResultDisplay/ResultDisplay';
 function App() {
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [selectedUrls, setSelectedUrls] = useState([]);
-    const [resultImage, setResultImage] = useState();
+    const [resultImageUrl, setResultImageUrl] = useState();
 
     const handleFileChange = (event) => {
         let files = Array.from(event.target.files);
         files = files?.slice(0, 2)
-        console.log(files)
         setSelectedFiles(files)
         const urls = files.map(file => URL.createObjectURL(file));
         setSelectedUrls(urls);
@@ -37,9 +36,10 @@ function App() {
             .then(blob => {
                 const imageUrl = URL.createObjectURL(blob);
                 console.log(imageUrl)
-                const imageElement = document.createElement('img');
-                imageElement.src = imageUrl;
-                setResultImage(imageElement);
+                // const imageElement = document.createElement('img');
+                // imageElement.src = imageUrl;
+                // document.body.appendChild(imageElement);
+                setResultImageUrl(imageUrl);
             })
             .catch(error => console.error('Ошибка:', error));
     };
@@ -53,7 +53,7 @@ function App() {
                 handleChange={handleFileChange}
             />
             <MyButton onClick={handleUpload} children={"СКЛЕИТЬ"}/>
-            <ResultDisplay resultImage={resultImage}/>
+            <ResultDisplay resultImageUrl={resultImageUrl}/>
         </div>
     )
 }

@@ -3,16 +3,17 @@ import cl from "./ResultDisplay.module.css"
 import ImageCard from '../ImageCard/ImageCard';
 import MyButton from '../MyButton/MyButton';
 
-const ResultDisplay = (resultImage) => {
-    console.log(resultImage.resultImage)
+const ResultDisplay = ({resultImageUrl}) => {
     return (
         <div className={cl.resultDisplay}>
             <h1>Результат</h1>
             <ImageCard 
                 className={cl.resultDisplay__imageCard}
                 children={
-                    resultImage.resultImage
-                    ? `${resultImage.resultImage}`
+                    resultImageUrl
+                    ? <img
+                        src={resultImageUrl}
+                    />
                     : <img 
                         src="./images/file.png" 
                         alt="Upload file"
