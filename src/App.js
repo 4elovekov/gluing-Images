@@ -10,6 +10,7 @@ function App() {
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [selectedUrls, setSelectedUrls] = useState([]);
     const [resultImageUrl, setResultImageUrl] = useState();
+    const [isLoading, setIsLoading] = useState(false)
     const app = useRef();
 
     useEffect(() => {
@@ -33,6 +34,7 @@ function App() {
     };
 
     const handleUpload = async () => {
+        setIsLoading(true)
         if (selectedFiles.length === 0) {
             console.error('No files selected.');
             return;
@@ -50,6 +52,7 @@ function App() {
             .then(blob => {
                 const imageUrl = URL.createObjectURL(blob);
                 setResultImageUrl(imageUrl);
+                setIsLoading(false)
             })
             .catch(error => console.error('Ошибка:', error));
     };
@@ -63,7 +66,11 @@ function App() {
                 handleChange={handleFileChange}
             />
             <MyButton onClick={handleUpload} children={"Склеить"}/>
-            <ResultDisplay resultImageUrl={resultImageUrl}/>
+            <ResultDisplay 
+                isLoading={isLoading} 
+                setIsLoading={setIsLoading} 
+                resultImageUrl={resultImageUrl}
+            />
         </div>
     )
 }

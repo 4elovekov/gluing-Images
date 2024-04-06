@@ -1,0 +1,22 @@
+.loader {
+    display: none;
+    z-index: 2;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 5px dashed #7FF84F;
+    animation: rotate 1s infinite linear;
+}
+
+.active {
+    display: block;
+}
+  
+@keyframes rotate {
+    from {
+        transform: rotate(0deg) scale(1);
+    }
+    to {
+        transform: rotate(360deg) scale(1.5);
+    }
+}
