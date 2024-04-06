@@ -1,14 +1,9 @@
 import React from 'react';
 import cl from "./ResultDisplay.module.css"
 import ImageCard from '../ImageCard/ImageCard';
-import MyButton from '../MyButton/MyButton';
 import MyLink from '../MyLink/MyLink';
 
 const ResultDisplay = ({resultImageUrl}) => {
-
-    const reloadPage = () => {
-        window.location.href = "/";
-    }
 
     return (
         <div className={cl.resultDisplay}>
