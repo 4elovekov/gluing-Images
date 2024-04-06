@@ -40,19 +40,23 @@ function App() {
                     'Content-Type': 'multipart/form-data'
                 }
             });
+            const base64String = btoa(
+                new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), '')
+            );
+            // Создаем URL для изображения
+            //const imageUrl = URL.createObjectURL(response.data.blob());
+            const imageUrl = `data:${response.headers['content-type']};base64,${base64String}`
+              
+            // Создаем элемент изображения и отображаем его на странице
+            const imageElement = document.createElement('img');
+            imageElement.src = imageUrl;
+            document.body.appendChild(imageElement);
             console.log("response", response)
             console.log("response.data", response.data)
             console.log("response.data.entries()", response.data.entries())
             console.log("response.data.entries", response.data.entries)
             console.log("response.data.entries()[0]", response.data.entries()[0])
             console.log("response.data.entries()[1]", response.data.entries()[1])
-            // Создаем URL для изображения
-            const imageUrl = URL.createObjectURL(response.data.blob());
-              
-            // Создаем элемент изображения и отображаем его на странице
-            const imageElement = document.createElement('img');
-            imageElement.src = imageUrl;
-            document.body.appendChild(imageElement);
             
 
             // console.log('Response:', response.data);
