@@ -1,24 +1,25 @@
-import React, { useState, useRef  } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import "./styles/App.css";
 import MyButton from "./components/UI/MyButton/MyButton";
-import MyInput from "./components/UI/MyInput/MyInput";
+//import MyInput from "./components/UI/MyInput/MyInput";
 import Header from "./components/UI/Header/Header";
+import ImageUploader from './components/UI/ImageUploader/ImageUploader';
 
 function App() {
     const [selectedFiles, setSelectedFiles] = useState([]);
-    const fileInputRef = useRef();
+    const [selectedUrls, setSelectedUrls] = useState([]);
 
     const handleFileChange = (event) => {
-        const files = event.target.files;
-        setSelectedFiles(files);
+        let files = Array.from(event.target.files);
+        files = files?.slice(0, 2)
+        console.log(files)
+        setSelectedFiles(files)
+        const urls = files.map(file => URL.createObjectURL(file));
+        setSelectedUrls(urls);
+        
     };
 
-    const handleUploadClick = (event) => {
-        event.preventDefault();
-        fileInputRef.current.click();
-      };
-  
     const handleUpload = async () => {
         if (selectedFiles.length === 0) {
             console.error('No files selected.');
@@ -36,8 +37,11 @@ function App() {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-    
             console.log('Response:', response.data);
+            const imageUrl = response.data.imageUrl;
+            const imageElement = document.createElement('img');
+            imageElement.src = imageUrl;
+            document.body.appendChild(imageElement);
         } catch (error) {
             console.error('Error:', error);
         }
@@ -46,8 +50,11 @@ function App() {
     return (
         <div className="App">
             <Header/>
-            <MyButton onClick={handleUploadClick} children={"Загрузить файлы"}/>
-            <MyInput ref={fileInputRef} onChange={handleFileChange}/>
+            <ImageUploader
+                images={selectedUrls}
+                setImages={setSelectedUrls}
+                handleChange={handleFileChange}
+            />
             <MyButton onClick={handleUpload} children={"Отправить файлы"}/>
         </div>
     )

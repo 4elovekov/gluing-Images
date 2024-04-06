@@ -1,0 +1,31 @@
+.imageUploader {
+    width: 800px;
+    height: auto;
+    margin: 30px;
+}
+
+.imageUploader__images {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.imageUploader__image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.imageUploader__block {
+    border: 2px dashed white;
+    border-radius: 10px;
+    max-width: 400px;
+    max-height: 600px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
