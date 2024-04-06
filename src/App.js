@@ -18,7 +18,6 @@ function App() {
     }, [])
 
     const handleFileDrop = (event) => {
-        setIsLoading(true)
         let files = Array.from(event.dataTransfer.files);
         files = files?.slice(0, 2)
         setSelectedFiles(files)
@@ -27,7 +26,6 @@ function App() {
     };
 
     const handleFileChange = (event) => {
-        setIsLoading(true)
         let files = Array.from(event.target.files);
         files = files?.slice(0, 2)
         setSelectedFiles(files)
@@ -54,6 +52,7 @@ function App() {
             .then(blob => {
                 const imageUrl = URL.createObjectURL(blob);
                 setResultImageUrl(imageUrl);
+                setIsLoading(false)
             })
             .catch(error => console.error('Ошибка:', error));
     };
