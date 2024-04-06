@@ -32,9 +32,6 @@ function App() {
         fetch('http://localhost:8080/upload', {
             method: 'POST',
             body: formData,
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
           })
           .then(response => response.blob())
           .then(blob => {
