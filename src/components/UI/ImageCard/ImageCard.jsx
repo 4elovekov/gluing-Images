@@ -4,7 +4,7 @@ import cl from "./ImageCard.module.css"
 function ImageCard({children, ...props}) {
 
     return (
-        <div {...props} className={cl.imageCard}>
+        <div className={[cl.imageCard, props.className].join(" ")}>
             {children}
         </div>
     );
