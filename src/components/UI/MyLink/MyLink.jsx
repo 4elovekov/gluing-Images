@@ -1,13 +1,9 @@
-import React from "react";
-import cl from "./MyLink.module.css";
+import React from 'react';
+import cl from './MyLink.module.css';
 
-const MyLink = ({children, ...props}) => {
+const MyLink = ({children, href, download}) => {
     return (
-        <a 
-            //href="#"  
-            className={cl.MyButton}
-            {...props}
-        >
+        <a href={href} download={download} className={cl.MyLink}>
             {children}
         </a>
     );
