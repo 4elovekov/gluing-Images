@@ -1,3 +1,19 @@
 .MyButton {
-    
+    width: 275px;
+    background-color: #7FF84F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    border: 3px solid #7FF84F;
+    padding: 10px 70px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.MyButton:hover {
+    background-color: white;
+    color: #7FF84F;
 }
