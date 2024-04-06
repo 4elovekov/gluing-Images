@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import "./styles/App.css";
 import MyButton from "./components/UI/MyButton/MyButton";
 //import MyInput from "./components/UI/MyInput/MyInput";
@@ -32,6 +32,9 @@ function App() {
         fetch('http://localhost:8080/upload', {
             method: 'POST',
             body: formData,
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
           })
           .then(response => response.blob())
           .then(blob => {
