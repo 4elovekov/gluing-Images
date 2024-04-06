@@ -30,7 +30,7 @@ function App() {
             for (let i = 0; i < selectedFiles.length; i++) {
                 formData.append('image', selectedFiles[i]);
             }
-            console.log(formData.entries)
+            console.log(formData)
             for (const entry of formData.entries()) {
                 console.log(entry[1]);
             }
@@ -40,7 +40,12 @@ function App() {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            
+            console.log("response", response)
+            console.log("response.data", response.data)
+            console.log("response.data.entries()", response.data.entries())
+            console.log("response.data.entries", response.data.entries)
+            console.log("response.data.entries()[0]", response.data.entries()[0])
+            console.log("response.data.entries()[1]", response.data.entries()[1])
             // Создаем URL для изображения
             const imageUrl = URL.createObjectURL(response.data.blob());
               
