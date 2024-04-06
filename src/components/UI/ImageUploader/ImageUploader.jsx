@@ -3,7 +3,7 @@ import cl from "./ImageUploader.module.css"
 import MyInput from '../MyInput/MyInput';
 import ImageCard from '../ImageCard/ImageCard';
 
-function ImageUploader({images, setImages, handleChange}) {
+function ImageUploader({images, handleChange}) {
     const fileInputRef = useRef();
 
     const handleUploadClick = (event) => {

@@ -8,6 +8,7 @@ import ResultDisplay from './components/UI/ResultDisplay/ResultDisplay';
 function App() {
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [selectedUrls, setSelectedUrls] = useState([]);
+    const [resultImage, setResultImage] = useState();
 
     const handleFileChange = (event) => {
         let files = Array.from(event.target.files);
@@ -38,7 +39,7 @@ function App() {
                 console.log(imageUrl)
                 const imageElement = document.createElement('img');
                 imageElement.src = imageUrl;
-                document.body.appendChild(imageElement);
+                setResultImage(imageElement);
             })
             .catch(error => console.error('Ошибка:', error));
     };
@@ -52,7 +53,7 @@ function App() {
                 handleChange={handleFileChange}
             />
             <MyButton onClick={handleUpload} children={"СКЛЕИТЬ"}/>
-            <ResultDisplay/>
+            <ResultDisplay resultImage={resultImage}/>
         </div>
     )
 }
