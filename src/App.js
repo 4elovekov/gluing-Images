@@ -40,10 +40,12 @@ function App() {
                     'Content-Type': 'multipart/form-data'
                 }, responseType: "arraybuffer"
             });
+            console.log(response)
+            console.log(response.data)
             const blobb = new Blob([response.data], {
                 type: "image/jpeg",
             });
-
+            console.log(blobb)
             const url = Window.URL.createObjectURL(blobb);
             console.log("{image: url}", {image: url})
             console.log("url", url)
