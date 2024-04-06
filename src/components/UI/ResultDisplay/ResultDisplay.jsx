@@ -13,6 +13,7 @@ const ResultDisplay = ({resultImageUrl}) => {
                     resultImageUrl
                     ? <img
                         src={resultImageUrl}
+                        alt="Upload file"
                     />
                     : <img 
                         src="./images/file.png" 
