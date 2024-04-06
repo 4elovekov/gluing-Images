@@ -28,7 +28,11 @@ function App() {
         try {
             const formData = new FormData();
             for (let i = 0; i < selectedFiles.length; i++) {
-                formData.append('images', selectedFiles[i]);
+                formData.append('image', selectedFiles[i]);
+            }
+            console.log(formData.entries)
+            for (const entry of formData.entries()) {
+                console.log(entry[1]);
             }
   
             const response = await axios.post('http://localhost:8080/upload', formData, {
