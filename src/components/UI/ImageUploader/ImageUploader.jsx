@@ -32,10 +32,10 @@ function ImageUploader({images, setImages, handleChange}) {
         :   
         <div className={cl.imageUploader__images}>
             <ImageCard key="image1"
-                children={<img style={{height: "50px", cursor:"pointer"}} onClick={handleUploadClick} src="./images/file.png" alt="Upload file"/>}
+                children={<img style={{height: "120px", cursor:"pointer"}} onClick={handleUploadClick} src="./images/file.png" alt="Upload file"/>}
             />
             <ImageCard key="image2"
-                children={<img style={{height: "50px", cursor:"pointer"}} onClick={handleUploadClick} src="./images/file.png" alt="Upload file"/>}
+                children={<img style={{height: "120px", cursor:"pointer"}} onClick={handleUploadClick} src="./images/file.png" alt="Upload file"/>}
             />
         </div>
         }
