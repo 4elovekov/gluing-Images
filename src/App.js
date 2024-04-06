@@ -40,17 +40,29 @@ function App() {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            const base64String = btoa(
-                new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), '')
-            );
+            const base64String = response.data;
+            const byteCharacters = atob(base64String);
+            let byteArray = new Uint8Array(byteCharacters.length);
+            for (var i = 0; i < byteCharacters.length; i++) {
+                byteArray[i] = byteCharacters.charCodeAt(i);
+            }
+            const blob = new Blob([byteArray], { type: 'image/png' });
+            var imageUrl = URL.createObjectURL(blob);
+            var img = document.createElement('img');
+            img.src = imageUrl;
+            document.body.appendChild(img)
+
+            // const base64String = btoa(
+            //     new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), '')
+            // );
             // Создаем URL для изображения
             //const imageUrl = URL.createObjectURL(response.data.blob());
-            const imageUrl = `data:${response.headers['content-type']};base64,${base64String}`
+            // const imageUrl = `data:${response.headers['content-type']};base64,${base64String}`
               
-            // Создаем элемент изображения и отображаем его на странице
-            const imageElement = document.createElement('img');
-            imageElement.src = imageUrl;
-            document.body.appendChild(imageElement);
+            // // Создаем элемент изображения и отображаем его на странице
+            // const imageElement = document.createElement('img');
+            // imageElement.src = imageUrl;
+            // document.body.appendChild(imageElement);
             console.log(response)
             console.log(response.data?.blob())
             console.log(response.request)
