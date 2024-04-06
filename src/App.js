@@ -34,36 +34,50 @@ function App() {
             for (const entry of formData.entries()) {
                 console.log(entry[1]);
             }
-  
-            const response = await axios.post('http://localhost:8080/upload', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-            const base64String = btoa(
-                new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), '')
-            );
-            // Создаем URL для изображения
-            //const imageUrl = URL.createObjectURL(response.data.blob());
-            const imageUrl = `data:${response.headers['content-type']};base64,${base64String}`
-              
-            // Создаем элемент изображения и отображаем его на странице
-            const imageElement = document.createElement('img');
-            imageElement.src = imageUrl;
-            document.body.appendChild(imageElement);
-            console.log("response", response)
-            console.log("response.data", response.data)
-            console.log("response.data.entries()", response.data.entries())
-            console.log("response.data.entries", response.data.entries)
-            console.log("response.data.entries()[0]", response.data.entries()[0])
-            console.log("response.data.entries()[1]", response.data.entries()[1])
-            
+            fetch('/path/to/your/go/endpoint')
+                .then(response => response.blob())
+                .then(blob => {
+                    // Создаем новый объект URL из полученного blob
+                    const imageUrl = URL.createObjectURL(blob);
 
-            // console.log('Response:', response.data);
-            // const imageUrl = response.data.imageUrl;
+                    // Создаем новый элемент <img> и устанавливаем его src на URL изображения
+                    const img = document.createElement('img');
+                    img.src = imageUrl;
+
+                    // Добавляем изображение на страницу
+                    document.body.appendChild(img);
+                })
+                .catch(error => console.error('Ошибка при получении файла:', error));
+  
+            // const response = await axios.post('http://localhost:8080/upload', formData, {
+            //     headers: {
+            //         'Content-Type': 'multipart/form-data'
+            //     }
+            // });
+            // const base64String = btoa(
+            //     new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), '')
+            // );
+            // // Создаем URL для изображения
+            // //const imageUrl = URL.createObjectURL(response.data.blob());
+            // const imageUrl = `data:${response.headers['content-type']};base64,${base64String}`
+              
+            // // Создаем элемент изображения и отображаем его на странице
             // const imageElement = document.createElement('img');
             // imageElement.src = imageUrl;
             // document.body.appendChild(imageElement);
+            // // console.log("response", response)
+            // // console.log("response.data", response.data)
+            // // console.log("response.data.entries()", response.data.entries())
+            // // console.log("response.data.entries", response.data.entries)
+            // // console.log("response.data.entries()[0]", response.data.entries()[0])
+            // // console.log("response.data.entries()[1]", response.data.entries()[1])
+            
+
+            // // console.log('Response:', response.data);
+            // // const imageUrl = response.data.imageUrl;
+            // // const imageElement = document.createElement('img');
+            // // imageElement.src = imageUrl;
+            // // document.body.appendChild(imageElement);
         } catch (error) {
             console.error('Error:', error);
         }
