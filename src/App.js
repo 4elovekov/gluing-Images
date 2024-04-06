@@ -48,7 +48,7 @@ function App() {
                 setImages={setSelectedUrls}
                 handleChange={handleFileChange}
             />
-            <MyButton onClick={handleUpload} children={"СКЛЕИТЬ"}/>
+            <MyButton onClick={handleUpload} children={"Склеить"}/>
             <ResultDisplay resultImageUrl={resultImageUrl}/>
         </div>
     )
