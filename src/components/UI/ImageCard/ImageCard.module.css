@@ -1,0 +1,18 @@
+.imageCard {
+    border: 2px dashed white;
+    border-radius: 10px;
+    max-width: 400px;
+    max-height: 600px;
+    min-width: 200px;
+    min-height: 100px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageCard img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}

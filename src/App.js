@@ -17,7 +17,6 @@ function App() {
         setSelectedFiles(files)
         const urls = files.map(file => URL.createObjectURL(file));
         setSelectedUrls(urls);
-        
     };
 
     const handleUpload = async () => {
