@@ -41,7 +41,7 @@ function App() {
                 }, responseType: "image/jpeg"
             });
             const res = response.blob()
-            let imageUrl = URL.createObjectURL(blob);
+            let imageUrl = URL.createObjectURL(response.blob());
             console.log(imageUrl)
             imageUrl = URL.createObjectURL(response.blob());
             console.log(imageUrl)
