@@ -40,54 +40,62 @@ function App() {
                     'Content-Type': 'multipart/form-data'
                 }, responseType: "image/jpeg"
             });
-            console.log(response)
-            console.log(response.data)
-            const blobb = new Blob([response.data], {
-                type: "image/jpeg",
-            });
-            console.log(blobb)
-            try {
-                const url = URL.createObjectURL(blobb);
-                console.log("{image: url}", {image: url})
-                console.log("url", url)
-            } catch {
+            const res = response.blob()
+            let imageUrl = URL.createObjectURL(blob);
+            console.log(imageUrl)
+            imageUrl = URL.createObjectURL(response.blob());
+            console.log(imageUrl)
+            imageUrl = URL.createObjectURL(res);
+            console.log(imageUrl)
+            // Делайте что-то с imageUrl, например, присвойте его src свойству изображения.
+            // console.log(response)
+            // console.log(response.data)
+            // const blobb = new Blob([response.data], {
+            //     type: "image/jpeg",
+            // });
+            // console.log(blobb)
+            // try {
+            //     const url = URL.createObjectURL(blobb);
+            //     console.log("{image: url}", {image: url})
+            //     console.log("url", url)
+            // } catch {
 
-            }
-            const base64String = response.data;
-            console.log("base64String", base64String)
-            const byteCharacters = atob(base64String);
-            console.log("byteCharacters", byteCharacters)
-            let byteArray = new Uint8Array(byteCharacters.length);
-            console.log("byteArray", byteArray)
-            for (var i = 0; i < byteCharacters.length; i++) {
-                byteArray[i] = byteCharacters.charCodeAt(i);
-            }
-            const blob = new Blob([byteArray], { type: 'image/png' });
-            try {
-                const imageUrl = URL.createObjectURL(blob);
-                const img = document.createElement('img');
-                img.src = imageUrl;
-                document.body.appendChild(img)
-            } catch {
+            // }
+            // const base64String = response.data;
+            // console.log("base64String", base64String)
+            // const byteCharacters = atob(base64String);
+            // console.log("byteCharacters", byteCharacters)
+            // let byteArray = new Uint8Array(byteCharacters.length);
+            // console.log("byteArray", byteArray)
+            // for (var i = 0; i < byteCharacters.length; i++) {
+            //     byteArray[i] = byteCharacters.charCodeAt(i);
+            // }
+            // const blob = new Blob([byteArray], { type: 'image/png' });
+            // try {
+            //     const imageUrl = URL.createObjectURL(blob);
+            //     const img = document.createElement('img');
+            //     img.src = imageUrl;
+            //     document.body.appendChild(img)
+            // } catch {
 
-            }
+            // }
 
-            const base64String2 = btoa(
-                new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), '')
-            );
-            //Создаем URL для изображения
-            const imageUrl2 = URL.createObjectURL(response.data.blob());
-            const imageUr3 = `data:${response.headers['content-type']};base64,${base64String2}`
-            console.log("imageUrl2", imageUrl2)
-            console.log("imageUr3", imageUr3)
-            // Создаем элемент изображения и отображаем его на странице
-            // const imageElement = document.createElement('img');
-            // imageElement.src = imageUrl;
-            // document.body.appendChild(imageElement);
+            // const base64String2 = btoa(
+            //     new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), '')
+            // );
+            // //Создаем URL для изображения
+            // const imageUrl2 = URL.createObjectURL(response.data.blob());
+            // const imageUr3 = `data:${response.headers['content-type']};base64,${base64String2}`
+            // console.log("imageUrl2", imageUrl2)
+            // console.log("imageUr3", imageUr3)
+            // // Создаем элемент изображения и отображаем его на странице
+            // // const imageElement = document.createElement('img');
+            // // imageElement.src = imageUrl;
+            // // document.body.appendChild(imageElement);
 
-            console.log(response)
-            console.log(response.data?.blob())
-            console.log(response.request)
+            // console.log(response)
+            // console.log(response.data?.blob())
+            // console.log(response.request)
             
 
             // console.log('Response:', response.data);
