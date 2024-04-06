@@ -3,7 +3,7 @@ import axios from 'axios';
 import "./styles/App.css";
 import MyButton from "./components/UI/MyButton/MyButton";
 import MyInput from "./components/UI/MyInput/MyInput";
-//import MyLink from "./components/UI/MyLink/MyLink";
+import Header from "./components/UI/Header/Header";
 
 function App() {
     const [selectedFiles, setSelectedFiles] = useState([]);
@@ -24,7 +24,7 @@ function App() {
             console.error('No files selected.');
             return;
         }
-  
+    
         try {
             const formData = new FormData();
             for (let i = 0; i < selectedFiles.length; i++) {
@@ -45,6 +45,7 @@ function App() {
 
     return (
         <div className="App">
+            <Header/>
             <MyButton onClick={handleUploadClick} children={"Загрузить файлы"}/>
             <MyInput ref={fileInputRef} onChange={handleFileChange}/>
             <MyButton onClick={handleUpload} children={"Отправить файлы"}/>
