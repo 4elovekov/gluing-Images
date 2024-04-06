@@ -40,7 +40,7 @@ function App() {
                     'Content-Type': 'multipart/form-data'
                 }, responseType: "image/jpeg"
             });
-            const res = response.blob()
+            const res = response.blob
             let imageUrl = URL.createObjectURL(response.blob);
             console.log(imageUrl)
             imageUrl = URL.createObjectURL(response.blob);
