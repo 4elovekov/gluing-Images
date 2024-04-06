@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useRef  } from 'react';
 import axios from 'axios';
 import "./styles/App.css";
 import MyButton from "./components/UI/MyButton/MyButton";
 import MyInput from "./components/UI/MyInput/MyInput";
+//import MyLink from "./components/UI/MyLink/MyLink";
 
 function App() {
     const [selectedFiles, setSelectedFiles] = useState([]);
+    const fileInputRef = useRef();
 
     const handleFileChange = (event) => {
         const files = event.target.files;
         setSelectedFiles(files);
     };
+
+    const handleUploadClick = (event) => {
+        event.preventDefault();
+        fileInputRef.current.click();
+      };
   
     const handleUpload = async () => {
         if (selectedFiles.length === 0) {
@@ -38,9 +45,9 @@ function App() {
 
     return (
         <div className="App">
-            <MyInput onChange={handleFileChange}/>
-            <input type="file" onChange={handleFileChange} multiple accept="image/jpeg, image/png"/>
-            <MyButton onClick={handleUpload} children={"Отправить"}/>
+            <MyButton onClick={handleUploadClick} children={"Загрузить файлы"}/>
+            <MyInput ref={fileInputRef} onChange={handleFileChange}/>
+            <MyButton onClick={handleUpload} children={"Отправить файлы"}/>
         </div>
     )
 }

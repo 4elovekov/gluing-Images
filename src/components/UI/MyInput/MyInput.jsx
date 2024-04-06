@@ -1,18 +1,18 @@
 import React from "react";
 import cl from "./MyInput.module.css";
 
-function MyInput(props) {
-
+const MyInput = React.forwardRef((props, ref) => {
     return (
         <input 
-            className={cl.MyInput} 
+            ref={ref} 
             type="file"
             multiple
             accept="image/jpeg, image/png"
             placeholder="Выберите файлы формата JPG или PNG"
+            className={cl.MyInput} 
             {...props}
         />
-    )
-}
+    );
+});
 
 export default MyInput;
