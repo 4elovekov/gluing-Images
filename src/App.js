@@ -36,30 +36,14 @@ function App() {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-
-
-            if (!response.ok) {
-                throw new Error('Ошибка при получении изображения');
-            }
-            // Получаем заголовок Content-Type
-            const contentType = response.headers.get('Content-Type');
-            // Если тип содержимого не является изображением JPEG, выбрасываем ошибку
-            if (!contentType || !contentType.includes('image/jpeg')) {
-                throw new Error('Неподдерживаемый тип изображения');
-            }
-          
-            // Преобразуем ответ в Blob (двоичные данные)
-            console.log('Response:', response.data);
-            response.blob();
-            console.log('Response:', response.data);
             
             // Создаем URL для изображения
-            const imageUrl2 = URL.createObjectURL(response.blob());
+            const imageUrl = URL.createObjectURL(response.data.blob());
               
             // Создаем элемент изображения и отображаем его на странице
-            const imageElement2 = document.createElement('img');
-            imageElement2.src = imageUrl2;
-            document.body.appendChild(imageElement2);
+            const imageElement = document.createElement('img');
+            imageElement.src = imageUrl;
+            document.body.appendChild(imageElement);
             
 
             // console.log('Response:', response.data);
