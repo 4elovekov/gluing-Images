@@ -35,10 +35,6 @@ function App() {
             .then(response => response.blob())
             .then(blob => {
                 const imageUrl = URL.createObjectURL(blob);
-                console.log(imageUrl)
-                // const imageElement = document.createElement('img');
-                // imageElement.src = imageUrl;
-                // document.body.appendChild(imageElement);
                 setResultImageUrl(imageUrl);
             })
             .catch(error => console.error('Ошибка:', error));
