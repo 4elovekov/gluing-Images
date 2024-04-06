@@ -38,8 +38,16 @@ function App() {
             const response = await axios.post('http://localhost:8080/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
-                }
+                }, responseType: "arraybuffer"
             });
+            const blobb = new Blob([response.data], {
+                type: "image/jpeg",
+            });
+
+            const url = Window.URL.createObjectURL(blobb);
+            console.log("{image: url}", {image: url})
+            console.log("url", url)
+
             const base64String = response.data;
             const byteCharacters = atob(base64String);
             let byteArray = new Uint8Array(byteCharacters.length);
@@ -47,7 +55,7 @@ function App() {
                 byteArray[i] = byteCharacters.charCodeAt(i);
             }
             const blob = new Blob([byteArray], { type: 'image/png' });
-            var imageUrl = URL.createObjectURL(blob);
+            var imageUrl = Window.URL.createObjectURL(blob);
             var img = document.createElement('img');
             img.src = imageUrl;
             document.body.appendChild(img)
