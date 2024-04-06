@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import "./styles/App.css";
 import MyButton from "./components/UI/MyButton/MyButton";
-//import MyInput from "./components/UI/MyInput/MyInput";
 import Header from "./components/UI/Header/Header";
 import ImageUploader from './components/UI/ImageUploader/ImageUploader';
+import ResultDisplay from './components/UI/ResultDisplay/ResultDisplay';
 
 function App() {
     const [selectedFiles, setSelectedFiles] = useState([]);
@@ -31,16 +31,16 @@ function App() {
         fetch('http://localhost:8080/upload', {
             method: 'POST',
             body: formData,
-          })
-          .then(response => response.blob())
-          .then(blob => {
-            const imageUrl = URL.createObjectURL(blob);
-            console.log(imageUrl)
-            const imageElement = document.createElement('img');
-            imageElement.src = imageUrl;
-            document.body.appendChild(imageElement);
-          })
-          .catch(error => console.error('Ошибка:', error));
+        })
+            .then(response => response.blob())
+            .then(blob => {
+                const imageUrl = URL.createObjectURL(blob);
+                console.log(imageUrl)
+                const imageElement = document.createElement('img');
+                imageElement.src = imageUrl;
+                document.body.appendChild(imageElement);
+            })
+            .catch(error => console.error('Ошибка:', error));
     };
 
     return (
@@ -52,6 +52,7 @@ function App() {
                 handleChange={handleFileChange}
             />
             <MyButton onClick={handleUpload} children={"СКЛЕИТЬ"}/>
+            <ResultDisplay/>
         </div>
     )
 }
