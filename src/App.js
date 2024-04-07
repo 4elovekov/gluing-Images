@@ -44,7 +44,7 @@ function App() {
             formData.append('image', selectedFiles[i]);
         }
 
-        fetch('https://0b66-5-206-16-176.ngrok-free.app/upload', {
+        fetch('https://f299-5-206-16-176.ngrok-free.app/upload', {
             method: 'POST',
             body: formData,
         })
